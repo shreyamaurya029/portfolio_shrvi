@@ -1,0 +1,103 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --profile-height: 30rem;
+  --profile-width: calc(var(--profile-height) );
+}
+.profile-container{
+    display: flex;
+    margin: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    .profile {
+        background: #191c29;
+        width: var(--profile-width);
+        height: var(--profile-height);
+        padding: 1rem;
+        position: relative;
+        border-radius: 6px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
+
+        font-size: 1.5em;
+        color: rgb(88 199 250 / 0%);
+        cursor: pointer;
+        font-family: cursive;
+      }
+      
+      .profile:hover {
+        color: rgb(88 199 250 / 100%);
+        transition: color 1s;
+      }
+      .profile:hover:before,
+      .profile:hover:after {
+        animation: none;
+        opacity: 0;
+      }
+      
+      .profile::before {
+        content: "";
+        width: 104%;
+        height: 102%;
+        border-radius: 8px;
+        background-image: linear-gradient(
+          var(--rotate),
+          #5ddcff,
+          #3c67e3 43%,
+          #4e00c2
+        );
+        position: absolute;
+        z-index: -1;
+        top: -1%;
+        left: -2%;
+        animation: spin 2.5s linear infinite;
+      }
+      
+      .profile::after {
+        position: absolute;
+        content: "";
+        top: calc(var(--profile-height) / 6);
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        transform: scale(0.8);
+        filter: blur(calc(var(--profile-height) / 6));
+        background-image: linear-gradient(
+          var(--rotate),
+          #5ddcff,
+          #3c67e3 43%,
+          #4e00c2
+        );
+        opacity: 1;
+        transition: opacity 0.5s;
+        animation: spin 2.5s linear infinite;
+      }
+      
+    .profile-image {
+        width: 20rem;
+        height: 20rem;
+        border-radius: 50%;
+        border: 2px solid #3498db;
+        align-items: center;
+
+    }
+    
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
